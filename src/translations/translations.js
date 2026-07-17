@@ -153,8 +153,9 @@ export const translations = {
         Dec: 'December',
       },
     },
+    dataNoticeTitle: 'Synthetic data notice',
     dataNotice:
-      'This dashboard uses synthetic sample data created for educational purposes.',
+      'This dashboard uses synthetic sample data created for educational purposes. The figures are not live Steam data and should not be interpreted as current platform statistics.',
     footerNote: 'SEG3125 Assignment 5 bilingual interactive dashboard prototype.',
   },
   fr: {
@@ -315,8 +316,9 @@ export const translations = {
         Dec: 'Décembre',
       },
     },
+    dataNoticeTitle: 'Avis sur les données synthétiques',
     dataNotice:
-      'Ce tableau de bord utilise des données synthétiques créées à des fins éducatives.',
+      "Ce tableau de bord utilise des données synthétiques créées à des fins éducatives. Les chiffres ne sont pas des données Steam en direct et ne doivent pas être interprétés comme des statistiques actuelles de la plateforme.",
     footerNote:
       'Prototype de tableau de bord interactif bilingue pour le devoir 5 de SEG3125.',
   },

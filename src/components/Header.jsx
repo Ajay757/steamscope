@@ -1,4 +1,4 @@
-import { BarChart3, LineChart } from 'lucide-react'
+import { DataNotice } from './DataNotice.jsx'
 import { LanguageSelector } from './LanguageSelector.jsx'
 
 export function Header({ language, onLanguageChange, t }) {
@@ -25,33 +25,7 @@ export function Header({ language, onLanguageChange, t }) {
           />
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="flex items-center gap-3 rounded-lg border border-steam-border/80 bg-steam-deep/70 px-4 py-3">
-            <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-steam-teal/10 text-steam-teal">
-              <BarChart3 aria-hidden="true" size={20} />
-            </span>
-            <div>
-              <p className="text-sm font-semibold text-white">
-                {t.header.popularityTitle}
-              </p>
-              <p className="text-sm text-steam-muted">
-                {t.header.popularityText}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 rounded-lg border border-steam-border/80 bg-steam-deep/70 px-4 py-3">
-            <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-steam-teal/10 text-steam-teal">
-              <LineChart aria-hidden="true" size={20} />
-            </span>
-            <div>
-              <p className="text-sm font-semibold text-white">
-                {t.header.activityTitle}
-              </p>
-              <p className="text-sm text-steam-muted">{t.header.activityText}</p>
-            </div>
-          </div>
-        </div>
+        <DataNotice t={t} />
       </div>
     </header>
   )
