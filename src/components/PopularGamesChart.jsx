@@ -139,7 +139,7 @@ export function PopularGamesChart({ games, locale, t }) {
 
         {chartData.length > 0 ? (
           <div
-            className="h-96 w-full overflow-x-auto"
+            className="h-96 w-full"
             role="img"
             aria-label={t.charts.popular.ariaLabel}
             aria-describedby={chartSummaryId}
@@ -147,7 +147,7 @@ export function PopularGamesChart({ games, locale, t }) {
             <p className="sr-only" id={chartSummaryId}>
               {t.charts.popular.screenReaderSummary(metricLabel)}
             </p>
-            <div className="h-full min-w-[38rem]">
+            <div className="h-full w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={chartData}
@@ -177,12 +177,12 @@ export function PopularGamesChart({ games, locale, t }) {
                     }}
                   />
                   <YAxis
-                    type="category"
-                    dataKey="name"
-                    width={118}
-                    interval={0}
-                    stroke={chartColors.muted}
-                    tick={{ fill: chartColors.text, fontSize: 12 }}
+                  type="category"
+                  dataKey="name"
+                  width={96}
+                  interval={0}
+                  stroke={chartColors.muted}
+                  tick={{ fill: chartColors.text, fontSize: 11 }}
                     tickLine={false}
                     axisLine={false}
                   />

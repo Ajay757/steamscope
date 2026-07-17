@@ -194,7 +194,7 @@ export function PlayerActivityChart({ games, locale, t }) {
         </div>
 
         <div
-          className="h-96 w-full overflow-x-auto"
+          className="h-96 w-full"
           role="img"
           aria-label={t.charts.activity.ariaLabel}
           aria-describedby={chartSummaryId}
@@ -202,7 +202,7 @@ export function PlayerActivityChart({ games, locale, t }) {
           <p className="sr-only" id={chartSummaryId}>
             {t.charts.activity.screenReaderSummary(selectedGames.length)}
           </p>
-          <div className="h-full min-w-[38rem]">
+          <div className="h-full w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 data={chartData}
@@ -216,7 +216,7 @@ export function PlayerActivityChart({ games, locale, t }) {
                 />
                 <XAxis
                   dataKey="label"
-                  interval={0}
+                  interval="preserveStartEnd"
                   stroke={chartColors.muted}
                   tick={{ fill: chartColors.text, fontSize: 12 }}
                   axisLine={{ stroke: chartColors.grid }}
