@@ -1,121 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useEffect, useMemo, useState } from 'react'
+import { Footer } from './components/Footer.jsx'
+import { Header } from './components/Header.jsx'
+import { PlayerActivityChart } from './components/PlayerActivityChart.jsx'
+import { PopularGamesChart } from './components/PopularGamesChart.jsx'
+import { StatCard } from './components/StatCard.jsx'
+import { games } from './data/games.js'
+import { translations } from './translations/translations.js'
+import { buildSummaryCards } from './utils/summaryStats.js'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [language, setLanguage] = useState('en')
+  const t = translations[language]
+  const locale = language === 'fr' ? 'fr-CA' : 'en-CA'
+
+  useEffect(() => {
+    document.documentElement.lang = locale
+  }, [locale])
+
+  const stats = useMemo(() => buildSummaryCards(games, t, locale), [locale, t])
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+    <div className="min-h-screen bg-steam-deep text-slate-100">
+      <Header language={language} onLanguageChange={setLanguage} t={t} />
+
+      <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <section
+          aria-label={t.stats.sectionLabel}
+          className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
         >
-          Count is {count}
-        </button>
-      </section>
+          {stats.map((stat) => (
+            <StatCard key={stat.label} {...stat} />
+          ))}
+        </section>
 
-      <div className="ticks"></div>
+        <section className="grid gap-6 xl:grid-cols-2">
+          <PopularGamesChart games={games} locale={locale} t={t} />
+          <PlayerActivityChart games={games} locale={locale} t={t} />
+        </section>
+      </main>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <Footer t={t} />
+    </div>
   )
 }
 
