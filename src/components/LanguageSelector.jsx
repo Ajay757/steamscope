@@ -5,11 +5,15 @@ export function LanguageSelector({ language, onLanguageChange, labels }) {
   ]
 
   return (
-    <div className="flex flex-col gap-2" role="group" aria-label={labels.selectorLabel}>
+    <div
+      className="flex w-fit max-w-full flex-col gap-2"
+      role="group"
+      aria-label={labels.selectorLabel}
+    >
       <span className="text-sm font-medium text-steam-muted">
         {labels.selectorLabel}
       </span>
-      <div className="inline-flex rounded-lg border border-steam-border bg-steam-deep p-1">
+      <div className="inline-flex w-fit max-w-full rounded-lg border border-steam-border bg-steam-deep p-1">
         {options.map((option) => {
           const isActive = language === option.value
 
